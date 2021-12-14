@@ -1,0 +1,146 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>BikeSharingSystem</title>
+<script>
+function validateForm() {
+  var x = document.forms["myForm"]["Temperature"].value;
+  var y = document.forms["myForm"]["HUMIDITY"].value;
+  var z = document.forms["myForm"]["WINDSPEED"].value;
+  if (x == "" || y == "" || z == "") {
+    alert("All fields are mandatory must be filled out");
+    return false;
+  }
+}
+</script>
+</head>
+
+<body style="background-image: url("../static/bike.jpeg"); background-repeat:no-repeat; background-size:cover;">
+<header><h2 style="text-align:center; background-color:cadetblue; color:black;">Bike Sharing System Prediction</h2>
+</header>
+
+<div style="text-align:center;">
+  <p style=" background-color:greenyellow; color:black; padding: 5px"><strong>Management can manipulate the business strategy to meet the demand levels and meet the customer's expectations using this model</strong></p>
+</div>
+
+<div style="text-align:center; background-color:greenyellow; color:black; padding: 5px"><strong>Please provide  inputs to predict the Bike sharing demand based on environmental parameters</strong></div>
+	
+<div>
+	<br> <br> <br>
+	
+	<form name="myForm" action="{{url_for('predictor')}}" onsubmit="return validateForm()" method="POST">
+<table width="700" border="0" align="center" style="background-color:aliceblue;">
+  <tbody>
+	
+    <tr>
+      <td style="text-align:center; background-color:crimson;">Feature</td>
+      <td style="text-align:center;background-color:crimson;">Values</td>
+    </tr>  
+    <tr>
+      <td style="text-align:center;">SEASON</td>
+      <td style="text-align:center;"><label for="seasons"></label>
+
+<select name="seasons" id="season" style="width:150px;" >
+  <option value="FALL">FALL</option>
+  <option value="SUMMER">SUMMER</option>
+  <option value="WINTER">WINTER</option>
+  <option value="SPRING">SPRING</option>
+</select></td>
+    </tr>
+    <tr>
+      <td style="text-align:center;">WORKINGDAY</td>
+      <td style="text-align:center;"><label for="WORKINGDAY"></label>
+
+<select name="workingdays" id="workingday" style="width:150px;">
+  <option value="YES">YES</option>
+  <option value="NO">NO</option>
+</select></td>
+    </tr>
+	<tr>
+      <td style="text-align:center;">TEMP IN CELSIUS</td>
+      <td style="text-align:center;"> <input type="number" step="any" id="Temp" name="Temperature" style="width:145px;"><br></td></tr>  
+	  </tr>
+	  <tr>
+      <td style="text-align:center;">YEAR</td>
+      <td style="text-align:center;"><label for="YEAR"></label>
+
+<select name="years" id="year" style="width:150px;">
+  <option value="2019">2019</option>
+  <option value="2018">2018</option>
+</select></td>
+    </tr>
+	  
+	  <tr>
+      <td style="text-align:center;">WEATHER</td>
+      <td style="text-align:center;"><label for="WEATHER"></label>
+
+<select name="WEATHERS" id="weathersit" style="width:150px;">
+  <option value="CLOUDY">CLOUDY</option>
+  <option value="MIST">MIST</option>
+  <option value="LIGHTRAIN">LIGHTRAIN</option>
+  <option value="HEAVYRAIN">HEAVYRAIN</option>
+</select></td>
+    </tr>
+	
+	
+	<tr>
+      <td style="text-align:center;">HUMIDITY</td>
+      <td style="text-align:center;"> <input type="number" step="any" id="hum" name="HUMIDITY" style="width:148px;"><br></td></tr>
+	
+	<tr>
+      <td style="text-align:center;">MONTH</td>
+      <td style="text-align:center;"><label for="MONTH"></label>
+
+<select name="MONTHS" id="month" style="width:150px;">
+  <option value="JAN">JAN</option>
+  <option value="FEB">FEB</option>
+  <option value="MAR">MAR</option>
+  <option value="APR">APR</option>
+   <option value="MAY">MAY</option>
+  <option value="JUN">JUN</option>
+  <option value="JUL">JUL</option>
+  <option value="AUG">AUG</option>
+   <option value="SEP">SEP</option>
+  <option value="OCT">OCT</option>
+  <option value="NOV">NOV</option>
+  <option value="DEC">DEC</option>
+</select></td>
+    </tr>
+	  
+	<tr>
+      <td style="text-align:center;">WINDSPEED</td>
+      <td style="text-align:center;"> <input type="number" step="any" id="WINDSPEED" name="WINDSPEED" style="width:148px;"><br></td></tr>
+	 <tr>
+		
+      <td style="text-align:center;padding-top : 20px" colspan="2"><input type="submit" style="background-color:black;color:white;width:150px;height:40px;" value="Submit"></td>
+      
+    </tr>
+	
+	</tbody>
+</table>
+
+	</form>
+	
+	<br>
+	<br>
+	
+	
+	
+	<table width="400" border="0" align="center">
+  <tbody>
+	  
+	  <tr>
+      <td style="text-align:left; width:250px; background-color:chartreuse;"><strong>PREDICTION&nbsp; :</strong></td>
+	  <td style="text-align:right; background-color:chartreuse;"><label for="PREDICTION" style="text-align:left;">{{prediction_text}}</label> </td>
+      
+    </tr>	
+	   </tbody>
+</table>
+	
+	</div>
+	
+
+
+</body>
+</html>
